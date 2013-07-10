@@ -38,7 +38,12 @@ public class tray extends JFrame {
 	ActionListener cliplistener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			clipboard cl = new clipboard();
-			Transferable clipData = clipboard.getContents(this);
+			try {
+				cl.clipmethod();
+			} catch (UnsupportedFlavorException | IOException e1) {
+				e1.printStackTrace();
+			}
+		/*	Transferable clipData = clipboard.getContents(this);
 		      String s;
 		      try {
 		        s = (String) (clipData.getTransferData(DataFlavor.stringFlavor));
@@ -49,7 +54,7 @@ public class tray extends JFrame {
 		      Character[] ch = cl.toCharacterArray(s);
 		      String str = cl.translate(ch);
 		      StringSelection data = new StringSelection(str);
-		      clipboard.setContents(data, data);
+		      clipboard.setContents(data, data);*/
 		}
 	};
 	public tray() {
